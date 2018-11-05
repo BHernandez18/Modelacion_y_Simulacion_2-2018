@@ -23,8 +23,8 @@
 % puntos de 0.01
 
 x_1 = 0:.01:15*pi;    % Vector con los puntos a evaluar en la función
-a = 3 * logaritmo_b(3 * x_1 + 1, 5);
-b = sin(2 * logaritmo_b(x_1 + 11, 2)) + cos(5 * logaritmo_b(3 * x_1 + 27, 6));
+a = 3 * (log(3 * x_1 + 1) / log(5));
+b = sin(2 * log2(x_1 + 11)) + cos(5 * (log(3 * x_1 + 27) / log(6)));
 
 % Se grafican los puntos obtenidos previamente y se configuran los
 % elementos del gráfico resultante.

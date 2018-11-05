@@ -9,8 +9,8 @@
 % Profesor: Gonzalo Acuña
 % Ayudante: Francisco Muñoz
 
-% ===================
-% == Segunda parte ==
+% ========================
+% == Segunda parte - b) ==
 
 % Se solicita crear un archivo .m que reciba como entrada un vector y
 % despliegue por pantalla el resultado de la raíz cuadrada de la suma de
@@ -25,16 +25,16 @@ i = 1;
 %
 while true
     % Se pide el ingreso del largo del vector a generar.
-    largo = input('Ingrese el largo del vector a generar con un numero entero (mayor o igual a 8): ', 's');
+    largo = input('Ingrese el largo del vector a generar con un numero entero (mayor o igual a 4): ', 's');
     % Se verifica que el largo ingresado sea un valor numérico.
     if isnan(str2double(largo))
         fprintf('ERROR: El dato ingresado no es numerico. Por favor, ingrese un valor numerico.\n');
     % Se verifica que el largo ingresado sea un número entero.
     elseif mod(str2double(largo), 1) ~= 0
         fprintf('ERROR: El dato ingresado no es un numero entero. Por favor, ingrese un numero entero.\n');
-    % Se verifica que el largo del vector sea al menos 8.
-    elseif str2double(largo) < 8
-        fprintf('ERROR: El largo ingresado es menor que 8. Por favor, ingrese un largo mayor\n');
+    % Se verifica que el largo del vector sea al menos 4.
+    elseif str2double(largo) < 4
+        fprintf('ERROR: El largo ingresado es menor que 4. Por favor, ingrese un largo mayor\n');
     else
         largo = str2double(largo);
         break;

@@ -18,9 +18,22 @@
 % valor inicial.
 
 function resultado = newton_raphson(polinomio, max_iteraciones, error, x_n)
+
+% Condición de borde 1: máximo de iteraciones alcanzado.
+if max_iteraciones == 0
+    resultado = x_n;
+    return;
+end
+
+% Obtención de una aproximación a la raíz.
 x_n1 = x_n - (polyval(polinomio, x_n) / polyval(polyder(polinomio), x_n));
-if (abs(x_n1 - x_n) <= error || max_iteraciones == 0)
+
+% Condición de borde 2: error mínimo.
+if abs(x_n1 - x_n) <= error
     resultado = x_n1;
+    return;
 else
+    % Llamada recursiva.
     resultado = newton_raphson(polinomio, max_iteraciones - 1, error, x_n1);
+    return;
 end
