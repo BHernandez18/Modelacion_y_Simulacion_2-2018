@@ -43,6 +43,7 @@ title({'\textbf{Respuesta al escalon para} $H(s) = \frac{5s + 15}{14s^2 - 7s + 2
     'FontSize', 12);
 xlabel('Tiempo');
 ylabel('Amplitud');
+saveas(gcf, 'grafico_Hs.png');
 
 % Dado que el sistema se vuelve inestable con el paso del tiempo, se
 % realizara un analisis en torno a los primeros 15 segundos de la
@@ -56,6 +57,7 @@ title({'\textbf{Respuesta al escalon para} $H(s) = \frac{5s + 15}{14s^2 - 7s + 2
 xlabel('Tiempo');
 ylabel('Amplitud');
 xlim([0 15]);
+saveas(gcf, 'grafico_Hs_delimitado.png');
 
 % -------------------------------------------------------------------------
 % Se procede a realizar la discretizacion de la F. de Transferencia,
@@ -107,6 +109,8 @@ title({'$H2_{discreto}(z) = \frac{0.04197 z - 0.031}{z^2 - 2.036 z + 1.051}$ [T 
 xlabel('Tiempo');
 ylabel('Amplitud');
 
+saveas(gcf, 'graficos_Hdiscretrizados.png');
+
 % -------------------------------------------------------------------------
 % Se transforma la funcion de discreta a continua
 Tc = 0.1;
@@ -121,7 +125,8 @@ title({'$H2_{continuo}(s) = \frac{0.0357s - 0.0107}{s^2 - 0.05s + 0.015}$ [T = 0
     'FontSize', 14);
 ylabel('Amplitud');
 xlabel('Tiempo');
-xlim([0 150]);  % Dado que para el sistema discretizado se necesitaron 150
-                % puntos para realizar la grafica, esto implica que el
-                % grafico resultante posee el eje X en milisegundos y no en
-                % segundos como se indica en el.
+xlim([0 150]);
+saveas(gcf, 'grafico_H_discreto-a-continuo.png');
+% Dado que para el sistema discretizado se necesitaron 150 puntos para
+% realizar la grafica, esto implica que el grafico resultante posee el
+% eje X en milisegundos y no en segundos como se indica en el.
