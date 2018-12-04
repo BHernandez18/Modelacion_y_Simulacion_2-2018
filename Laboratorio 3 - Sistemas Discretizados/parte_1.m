@@ -64,7 +64,7 @@ saveas(gcf, 'grafico_Hs_delimitado.png');
 % empleando dos tiempos de muestreo distintos.
 
 % Tiempos de muestreo
-T1 = 0.01;
+T1 = 0.5;
 T2 = 0.1;
 
 % Discretizacion del sistema
@@ -85,17 +85,17 @@ N1_puntos = 15/T1;
 N2_puntos = 15/T2;
 
 [y1_discreto] = dstep(num1_discreto, den1_discreto, N1_puntos + 1);
-[x1_discreto] = 0:0.01:0.01*N1_puntos;
+[x1_discreto] = 0:T1:T1*N1_puntos;
 
 [y2_discreto] = dstep(num2_discreto, den2_discreto, N2_puntos + 1);
-[x2_discreto] = 0:0.1:0.1*N2_puntos;
+[x2_discreto] = 0:T2:T2*N2_puntos;
 
 % Graficas obtenidas para los sistemas discretos
 figure(3);
 subplot(2, 1, 1);
 stairs(x1_discreto, y1_discreto);
 grid on;
-title({'$H1_{discreto}(z) = \frac{0.01942 z - 0.01671}{z^2 - 2.022 z + 1.025}$ [T = 0.01]'},...
+title({'$H1_{discreto}(z) = \frac{0.3317 z - 0.03676}{z^2 - 1.871 z + 1.284}$ [T = 0.5]'},...
     'Interpreter','latex',...
     'FontSize', 14);
 ylabel('Amplitud');
@@ -114,7 +114,7 @@ saveas(gcf, 'graficos_Hdiscretrizados.png');
 % -------------------------------------------------------------------------
 % Se transforma la funcion de discreta a continua
 Tc = 0.1;
-[num_continuo, den_continuo] = d2cm(num1_discreto, den1_discreto, Tc, 'zoh');
+[num_continuo, den_continuo] = d2cm(num2_discreto, den2_discreto, Tc, 'zoh');
 
 % Grafica obtenida para el sistema continuo conseguido
 figure(4);
@@ -125,7 +125,7 @@ title({'$H2_{continuo}(s) = \frac{0.0357s - 0.0107}{s^2 - 0.05s + 0.015}$ [T = 0
     'FontSize', 14);
 ylabel('Amplitud');
 xlabel('Tiempo');
-xlim([0 150]);
+xlim([0 15]);
 saveas(gcf, 'grafico_H_discreto-a-continuo.png');
 % Dado que para el sistema discretizado se necesitaron 150 puntos para
 % realizar la grafica, esto implica que el grafico resultante posee el
