@@ -21,6 +21,6 @@ syms s;
 format rat;
 
 I = eye(size(A));
-FTs = C * inv((s*I - A)) * B + D;
+FTs = C / (s*I - A) * B + D;
 
-display(FTs)
+display(FTs);
