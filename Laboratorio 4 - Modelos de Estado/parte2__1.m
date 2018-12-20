@@ -42,24 +42,30 @@ C__c = [0, 1];
 D__c = 0;
 
 % ---
-% Construccion de los 'Modelos de Espacio de Estados'
+% Conversion de 'Modelos de Espacio de Estados' a 'Funciones de Transferencia'
 % ---
-% >> Sistema 1 <<
-G__a = ss(A__a, B__a, C__a, D__a);
-h0__a = [h1_0__a; h2_0__a];
+I__a = eye(size(A__a));
+I__b = eye(size(A__b));
+I__c = eye(size(A__c));
 
-% >> Sistema 2 <<
-G__b = ss(A__b, B__b, C__b, D__b);
-h0__b = [h1_0__b; h2_0__b];
+syms s;
+FTs__a = C__a / (s*I__a - A__a) * B__a + D__a; % F. de T. del Sistema 1
+FTs__b = C__b / (s*I__b - A__b) * B__b + D__b; % F. de T. del Sistema 2
+FTs__c = C__c / (s*I__c - A__c) * B__c + D__c; % F. de T. del Sistema 3
 
-% >> Sistema 3 <<
-G__c = ss(A__c, B__c, C__c, D__c);
-h0__c = [h1_0__c; h2_0__c];
+% Obtencion de numerador y denominador, para cada funcion de transferencia.
+[n1, d1] = numden(FTs__a);
+[n2, d2] = numden(FTs__b);
+[n3, d3] = numden(FTs__c);
+
+% Generacion de funciones de transferencia.
+tf__a = tf(sym2poly(n1), sym2poly(d1));
+tf__b = tf(sym2poly(n1), sym2poly(d1));
+tf__c = tf(sym2poly(n1), sym2poly(d1));
 
 % ---
-% Respuestas del sistema con condiciones iniciales
+% Respuestas al escalon, para cada uno de los sistemas
 % ---
-initial(G__a, h0__a);
-initial(G__b, h0__b);
-initial(G__c, h0__c);
-
+step(tf__a);
+step(tf__b);
+step(tf__c);
