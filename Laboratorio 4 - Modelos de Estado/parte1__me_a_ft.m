@@ -23,4 +23,6 @@ format rat;
 
 I = eye(size(A));
 FTs = C / (s*I - A) * B + D;
+
+fprintf('\n== Funciones de Transferencia ==\n');
 display(FTs);
