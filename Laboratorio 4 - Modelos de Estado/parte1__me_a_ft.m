@@ -1,3 +1,4 @@
+clear all;
 % Laboratorio 3 - Modelacion y Simulacion
 % << Modelos de Estado >>
 %

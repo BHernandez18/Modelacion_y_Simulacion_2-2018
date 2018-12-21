@@ -1,3 +1,4 @@
+clear all;
 % Laboratorio 3 - Modelacion y Simulacion
 % << Modelos de Estado >>
 %
@@ -34,6 +35,8 @@ C = [1 0];                          % Coeficientes de variables de estado (salid
 D = 0;                              % Coeficientes de entradas (salida)
 
 % Resultados finales
+fprintf('\n===============================================\n');
+fprintf('== Matrices del Modelo de Espacio de Estados ==\n');
 display(A);
 display(B);
 display(C);
