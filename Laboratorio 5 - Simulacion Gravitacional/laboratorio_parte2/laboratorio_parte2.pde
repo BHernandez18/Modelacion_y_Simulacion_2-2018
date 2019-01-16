@@ -158,11 +158,11 @@ void setup() {
   astros = new Astro[2];
   
   // Estrella
-  astros[0] = new Astro( new PVector(width/2, height/2), new PVector(0, 0), 500, 10, true);
+  astros[0] = new Astro( new PVector(width/2 + 20, height/2), new PVector(1, 0.2), 500, 10, true);
   astros[0].configurar_figura(false);
   
   // Planeta
-  astros[1] = new Astro( new PVector(width/2 + 200, height/2), new PVector(0, 1.58), 1000, 0, false);
+  astros[1] = new Astro( new PVector(width/2 + 220, height/2), new PVector(0, 1.58), 1000, 0, false);
   astros[1].configurar_figura(true);
 }
 
@@ -173,13 +173,27 @@ void draw() {
 
 void run() {
   for (Astro astro : astros) {
+    PVector aceleracion, fuerza_total, centro;
+    float distancia, escalar;
     if (astro.es_estrella) {
+      
+      centro = new PVector(width/2, height/2);
+      fuerza_total = PVector.sub(centro, astro.posicion);
+      distancia = fuerza_total.mag();
+      fuerza_total.normalize();
+      escalar = (-G * astro.masa) / pow(distancia, 2);
+      fuerza_total.add(fuerza_total.mult(escalar));
+      
+      aceleracion = PVector.div(fuerza_total, astro.masa);
+      astro.velocidad.add(aceleracion);
+      astro.posicion.add(astro.velocidad);
+      
       fill(astro.r, astro.g, astro.b);
       ellipse(astro.posicion.x, astro.posicion.y, astro.diametro, astro.diametro);    
     }
     else {
-      PVector fuerza_total = astro.calcular_fuerza();
-      PVector aceleracion = PVector.div(fuerza_total, astro.masa);
+      fuerza_total = astro.calcular_fuerza();
+      aceleracion = PVector.div(fuerza_total, astro.masa);
       astro.velocidad.add(aceleracion);
       astro.posicion.add(astro.velocidad);
       
